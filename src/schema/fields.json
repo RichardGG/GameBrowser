@@ -1,0 +1,171 @@
+{
+    "searchTitle": {
+        "label": "🔤 Title",
+        "code": "searchTitle",
+        "type": "String",
+        "placeholder": "Half-Life: Alyx",
+        "sortable": true
+    },
+    "info.developers": {
+        "label": "👩‍💻 Developers",
+        "code": "info.developers",
+        "type": "StringArray",
+        "placeholder": "Valve Corporation",
+        "fetch": true
+    },
+    "info.publishers": {
+        "label": "📢 Publishers",
+        "code": "info.publishers",
+        "type": "StringArray",
+        "placeholder": "Valve Corporation",
+        "fetch": true
+    },
+    "info.releaseDate": {
+        "label": "📅 Release Date",
+        "code": "info.releaseDate",
+        "type": "Date",
+        "placeholder": 1584921600,
+        "sortable": true
+    },
+    "reviews.gogCriticsScore": {
+        "label": "👍 Critic Score",
+        "code": "reviews.gogCriticsScore",
+        "type": "Percent",
+        "placeholder": 92.7778,
+        "sortable": true
+    },
+    "reviews.steamValue": {
+        "label": "👍 Steam Positive",
+        "code": "reviews.steamValue",
+        "type": "SteamRating",
+        "placeholder": 10,
+        "options": [
+            {
+                "code": 10,
+                "label": "Overwhelmingly Positive"
+            },
+            {
+                "code": 9,
+                "label": "Very Positive"
+            },
+            {
+                "code": 8,
+                "label": "Positive"
+            },
+            {
+                "code": 7,
+                "label": "Mostly Positive"
+            },
+            {
+                "code": 6,
+                "label": "Mixed"
+            },
+            {
+                "code": 5,
+                "label": "Mostly Negative"
+            },
+            {
+                "code": 4,
+                "label": "Negative"
+            },
+            {
+                "code": 3,
+                "label": "Very Negative"
+            },
+            {
+                "code": 2,
+                "label": "Overwhelmingly Negative"
+            }
+        ],
+        "sortable": true
+    },
+    "reviews.steamPercent": {
+        "label": "👍 Steam Percent",
+        "code": "reviews.steamPercent",
+        "type": "Percent",
+        "placeholder": 97,
+        "sortable": true
+    },
+    "reviews.steamTotal": {
+        "label": "👍 Number of Steam Reviews",
+        "code": "reviews.steamTotal",
+        "type": "Number",
+        "placeholder": 32245,
+        "sortable": true
+    },
+    "categories.themes": {
+        "label": "🏷 Themes",
+        "code": "categories.themes",
+        "type": "StringArray",
+        "placeholder": "Action",
+        "fetch": true
+    },
+    "categories.genres": {
+        "label": "🏷 Genres",
+        "code": "categories.genres",
+        "type": "StringArray",
+        "placeholder": "Action",
+        "fetch": true
+    },
+    "categories.gogTags": {
+        "label": "🏷 User Tags (GOG)",
+        "code": "categories.gogTags",
+        "type": "StringArray",
+        "placeholder": "???",
+        "fetch": true
+    },
+    "categories.steamTags": {
+        "label": "🏷 Steam Tags",
+        "code": "categories.steamTags",
+        "type": "StringArray",
+        "placeholder": "VR",
+        "fetch": true
+    },
+    "categories.steamFeatures": {
+        "label": "🏷 Steam Features",
+        "code": "categories.steamFeatures",
+        "type": "StringArray",
+        "placeholder": "Single-Player",
+        "fetch": true
+    },
+    "user.lastPlayed": {
+        "label": "📅 Last Played",
+        "code": "user.lastPlayed",
+        "type": "Date",
+        "placeholder": 0,
+        "sortable": true
+    },
+    "user.minutesInGame": {
+        "label": "🕓 Playtime",
+        "code": "user.minutesInGame",
+        "type": "Number",
+        "placeholder": 0,
+        "sortable": true
+    },
+    "user.diskSize": {
+        "label": "💾 Size on Disk",
+        "code": "user.diskSize",
+        "type": "Number",
+        "placeholder": 0,
+        "sortable": true
+    },
+    "user.installed": {
+        "label": "💾 Installed",
+        "code": "user.installed",
+        "type": "Boolean",
+        "placeholer": true
+    },
+    "user.ownedPlatforms": {
+        "label": "🛒 Owned Platforms",
+        "code": "user.ownedPlatforms",
+        "type": "StringArray",
+        "placeholder": "???",
+        "fetch": true
+    },
+    "random": {
+        "label": "🔀 Random",
+        "code": "random",
+        "type": "Random",
+        "sortable": true
+    }
+}

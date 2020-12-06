@@ -1,0 +1,91 @@
+{
+    "Date": {
+        ">=": {
+            "label": "before",
+            "code": ">=",
+            "type": "Date"
+        },
+        "<=": {
+            "label": "after",
+            "code": ">=",
+            "type": "Date"
+        },
+        "empty": {
+            "label": "is missing",
+            "code": "empty",
+            "type": "Nothing"
+        }
+    },
+    "Number": {
+        "<=": {
+            "label": "more than",
+            "code": "<=",
+            "type": "Number"
+        },
+        ">=": {
+            "label": "less than",
+            "code": ">=",
+            "type": "Number"
+        }
+    },
+    "Percent": {
+        "<=": {
+            "label": "more than",
+            "code": "<=",
+            "type": "Slider",
+            "min": 0,
+            "max": 100
+            
+        },
+        ">=": {
+            "label": "less than",
+            "code": ">=",
+            "type": "Slider",
+            "min": 0,
+            "max": 100
+        },
+        "missing": {
+            "label": "is missing",
+            "code": "missing",
+            "type": "Nothing"
+        }
+    },
+    "SteamRating": {
+        "==": {
+            "label": "is",
+            "code": "==",
+            "type": "Array"
+        },
+        "!==": {
+            "label": "is not",
+            "code": "!==",
+            "type": "Array"
+        }
+    },
+    "String": {
+        "in": {
+            "label": "contains",
+            "code": "in",
+            "type": "String",
+            "reverse": true
+        },
+        "!in": {
+            "label": "doesn't contain",
+            "code": "!in",
+            "type": "String",
+            "reverse": true
+        }
+    },
+    "StringArray": {
+        "in": {
+            "label": "contains",
+            "code": "in",
+            "type": "Array"
+        },
+        "!in": {
+            "label": "doesn't contain",
+            "code": "!in",
+            "type": "Array"
+        }
+    }
+}
