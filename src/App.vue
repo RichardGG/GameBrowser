@@ -43,6 +43,7 @@ import GameModal from './components/Game/GameModal.vue'
 import _ from 'lodash'
 import axios from 'axios'
 import jsonLogic from 'json-logic-js'
+import {google} from 'googleapis'
 import '../assets/style.scss'
 import 'vue-select/src/scss/vue-select.scss'
 import fields from './schema/fields.json'
@@ -100,6 +101,8 @@ export default {
         }
     },
     mounted() {
+
+        initGoogleDrive()
 
         jsonLogic.add_operation("!in", (a,b) => {
             return jsonLogic.apply(
@@ -175,6 +178,51 @@ export default {
         })
     },
     methods: {
+        initGoogleDrive() {
+
+            // TODO follow node guide instead
+            // https://developers.google.com/drive/api/v3/quickstart/nodejs
+
+            function handleClientLoad() {
+                gapi.load('client:auth2', initClient);
+            }
+
+            function initClient() {
+                gapi.client.init({
+                apiKey: 'AIzaSyBzIpC7HEkxEZRjDyPUqkk4o2So-qumTr0',
+                clientId: '966928639335-fauispungrug04paephgcvcb6ecg560k.apps.googleusercontent.com',
+                discoveryDocs: ["https://www.googleapis.com/discovery/v1/apis/drive/v3/rest"],
+                scope: 'https://www.googleapis.com/auth/drive.appdata'
+                }).then(function () {
+                // Listen for sign-in state changes.
+                gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
+
+                // Handle the initial sign-in state.
+                updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get())
+
+                }, function(error) {
+                console.log(error)
+                });
+            }
+
+            function updateSigninStatus(isSignedIn) {
+                if (isSignedIn()) {
+                    listFiles()
+                } else {
+                gapi.auth2.getAuthInstance().signIn();
+                // gapi.auth2.getAuthInstance().signOut();
+                }
+            }
+
+            function listFiles() {
+                gapi.client.drive.files.list({
+                'pageSize': 10,
+                'fields': "nextPageToken, files(id, name)"
+                }).then(function(response) {
+                var files = response.result.files;
+                });
+            }
+        },
         setTag(tagName) {
             console.log(tagName)
         },

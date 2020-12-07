@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.20.0",
+    "googleapis": "^39.2.0",
     "http-server": "^0.12.3",
     "json-logic-js": "^1.2.2",
     "style-loader": "^1.2.1",
