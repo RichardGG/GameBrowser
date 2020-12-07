@@ -1,0 +1,41 @@
+https://console.developers.google.com/projectcreate
+https://console.developers.google.com/apis/library/drive.googleapis.com
+Make sure right project
+Add
+Create Credentials
+
+Drive API
+Web Browser
+User DAta
+
+What credentials do I need?
+
+Set up consent screen
+External
+
+App name - My Game List
+User support email - Your email
+Developer contact email - Your email
+
+https://console.developers.google.com/apis/credentials
+
+Create
+API key - Paste here 
+
+return to https://console.developers.google.com/apis/credentials
+
+Create
+OAuth Client ID
+
+Application Type - Web application
+Name - My Game List
+
+Authorised JavaScript origins
+Add URI - mylist.games
+
+Authorised redirect URIs
+Add URI - mylist.games
+
+Create
+
+Client ID - Paste here: 
