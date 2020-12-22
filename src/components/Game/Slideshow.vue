@@ -18,17 +18,28 @@ export default {
         return {
             currentSlide: 0
         }
+    },
+    mounted() {
+        this.cycle()
+    },
+    methods: {
+        cycle() {
+            console.log('cycle')
+            this.index = this.index + 2 < this.images.length ?  this.index + 1 : 0
+            this.currentSlide = this.index
+            setTimeout(this.cycle, 8000)
+        }
     }
 }
 </script>
 <style lang="scss">
 .slideshow {
-    width: 600px;
+    width: 100%;
     flex-shrink: 0;
     .main-image {
         width: 100%;
-        padding-top: #{'min((9/16 * 100%), 50vh)'}; 
-        max-height: 50vh;
+        padding-top: #{'min((9/16 * 100%), 60vh)'}; 
+        max-height: 60vh;
         background-color: #333;
         background-size: contain;
         background-position: center;
@@ -36,7 +47,10 @@ export default {
     }
     .slides {
         display: flex;
-        // overflow: scroll;
+        width: 100%;
+        max-height: 10vw;
+        overflow: scroll;
+        flex-wrap: wrap;
         div {
             width: 20%;
             padding-top: 9/16 * 20%;

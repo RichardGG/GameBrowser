@@ -2,6 +2,7 @@
     <div class="nav-elements">
         <div class="nav-background" v-if="backgroundActive" @click="closeNav"></div>
         <div class="nav">
+            <img src="/static/logo.svg" class="logo">
             <div class="nav-area" @click="closeNav"></div>
             <v-select 
                 :reduce="option => option.code" 
@@ -68,6 +69,7 @@
                 <input v-model="tagName" type="text">
                 <button @click="setTag">Set Tag</button>
             </div>
+            <img src="/static/text.svg" class="text">
         </div>
         <div class="filters" v-if="filtersModalActive">
             <div class="filters-background" @click="closeFiltersModal"></div>
@@ -321,6 +323,20 @@ export default {
     z-index: 11;
     background: #333;
     padding: 10px;
+    .text, .logo {
+        width: 90px;
+        margin: 0 20px;
+        &.logo {
+            margin-top: -10px;
+            margin-bottom: -30px;
+        }
+        &.text {
+            margin-left: auto;
+            margin-right: auto;
+            width: 220px;
+            margin-bottom: -10px;
+        }
+    }
     .nav-button {
         cursor: pointer;
     }
