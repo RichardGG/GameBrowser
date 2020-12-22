@@ -1,0 +1,92 @@
+{
+    "developer": {
+        "title": "Developer/Publisher",
+        "controls": [
+            {
+                "type": "dropdown",
+                "field": "info.developers"
+            },
+            {
+                "type": "dropdown",
+                "field": "info.publishers"
+            }
+        ]
+    },
+    "release": {
+        "title": "Release Date",
+        "controls": [
+            {
+                "type": "date-range",
+                "field": "info.releaseDate"
+            }
+        ]
+    },
+    "reviews": {
+        "title": "Reviews",
+        "controls": [
+            {
+                "type": "number-range",
+                "field": "reviews.gogCriticsScore"
+            },
+            {
+                "type": "number-range",
+                "field": "reviews.steamPercent"
+            },
+            {
+                "type": "number-range",
+                "field": "reviews.steamTotal"
+            }
+        ]
+    },
+    "categories": {
+        "title": "Categories",
+        "controls": [
+            {
+                "type": "dropdown",
+                "field": "categories.themes"
+            },
+            {
+                "type": "dropdown",
+                "field": "categories.genres"
+            },
+            {
+                "type": "dropdown",
+                "field": "categories.gogTags"
+            },
+            {
+                "type": "dropdown",
+                "field": "categories.steamTags"
+            },
+            {
+                "type": "dropdown",
+                "field": "categories.steamFeatures"
+            }
+        ]
+    },
+    "playtime": {
+        "title": "Playtime",
+        "controls": [
+            {
+                "type": "number-range",
+                "field": "user.minutesInGame"
+            },
+            {
+                "type": "date-range",
+                "field": "user.lastPlayed"
+            }
+        ]
+    },
+    "installation": {
+        "title": "Installation",
+        "controls": [
+            {
+                "type": "checkbox",
+                "field": "user.installed"
+            },
+            {
+                "type": "number-range",
+                "field": "user.diskSize"
+            }
+        ]
+    }
+}
