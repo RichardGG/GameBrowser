@@ -278,9 +278,6 @@ export default {
         setTag(tagName) {
             console.log(tagName)
         },
-        test(game) {
-            return _.get(game, 'meta.gogId', 'nope')
-        },
         isSelected(game) {
             return _.get(this.selectedGames, _.get(game, 'meta.gogId'), false)
         },

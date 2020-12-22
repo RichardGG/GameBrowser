@@ -22,6 +22,7 @@ JS app to filter, sort and browse your game library.
   * Better UI
 
 * Filters
+  * Filters in Filters
   * Quick Select Filters
     * Custom Dropdowns
       * Date Range

@@ -120,9 +120,11 @@ export default {
             }
         }
         .card {
-            padding: 10px;
+            padding: 10px 20px;
             color: black;
-            border-left: 1px solid white;
+            border: 1px solid rgba(255,255,255,0.3);
+            box-shadow: 0 0 10px rgba(0,0,0,1);
+            border-radius: 4px;
             > div:first-child > .card-label {
                 display: none;
             }
@@ -133,7 +135,14 @@ export default {
                 text-transform: uppercase;
             }
             button {
+                border: 1px solid rgba(255,255,255,0.1);
+                background: none;
+                color: white;
                 opacity: 0.5;
+                cursor: pointer;
+                &:hover {
+                    opacity: 1;
+                }
             }
         }
     }
