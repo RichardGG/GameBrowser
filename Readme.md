@@ -3,7 +3,7 @@ JS app to filter, sort and browse your game library.
 
 ## TODO
 * General
-  * Website Like UI
+  * Website-Like UI
   * Links to Steam / GG.deals?
   * Infinite Scrolling
   * Keyboard/Controller Navigation

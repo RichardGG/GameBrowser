@@ -5,45 +5,47 @@
             <div class="columns">
                 <Slideshow :images="allImages"></Slideshow>
                 <div class="game-info">
-                    <button @click="launchGame">LAUNCH</button>
+                    <button @click="launchGame" style="display: none;">LAUNCH</button>
                     <div>
                         <strong class="game-title">{{ game.title }}</strong>
-                        <div class="game-description" v-html="game.summary"></div>
-                        <div class="fields">
-                            <div class="field-details" v-for="(field, index) in displayedFields" :key="'field' + index">
-                                <div class="field-type">{{ field.title }}</div>
-                                <div v-if="field.type == 'Boolean'" class="type-data type-Boolean">
-                                    {{ getInfo(field.path) }}
-                                </div>
-                                <div v-if="field.type == 'Date'" class="type-data type-Date">
-                                    {{ date(getInfo(field.path)) }}
-                                </div>
-                                <div v-if="field.type == 'Number'" class="type-data type-Number">
-                                    {{ getInfo(field.path) }}
-                                </div>
-                                <div v-if="field.type == 'Score'" class="type-data type-Score">
-                                    {{ getInfo(field.path) }}%
-                                </div>
-                                <div v-if="field.type == 'Random'" class="type-data type-Random">
-                                    {{ getInfo(field.path) }}
-                                </div>
-                                <div v-if="field.type == 'SteamRating'" class="type-data type-SteamRating">
-                                    {{ getInfo(field.path) }}
-                                </div>
-                                <div v-if="field.type == 'String'" class="type-data type-String">
-                                    {{ getInfo(field.path) }}
-                                </div>
-                                <div v-if="field.type == 'Array'" class="type-data type-Array">
-                                    <div class="array-items" :class="{'expanded': field.expanded}">
-                                        <div class="array-item" v-for="(a, index) in getInfo(field.path)" :key="'array' + index">
-                                            {{ a }}
+                        <div class="game-details">
+                            <div class="game-description" v-html="game.summary"></div>
+                            <div class="fields">
+                                <div class="field-details" v-for="(field, index) in displayedFields" :key="'field' + index">
+                                    <div class="field-type">{{ field.title }}</div>
+                                    <div v-if="field.type == 'Boolean'" class="type-data type-Boolean">
+                                        {{ getInfo(field.path) }}
+                                    </div>
+                                    <div v-if="field.type == 'Date'" class="type-data type-Date">
+                                        {{ date(getInfo(field.path)) }}
+                                    </div>
+                                    <div v-if="field.type == 'Number'" class="type-data type-Number">
+                                        {{ getInfo(field.path) }}
+                                    </div>
+                                    <div v-if="field.type == 'Score'" class="type-data type-Score">
+                                        {{ getInfo(field.path) }}%
+                                    </div>
+                                    <div v-if="field.type == 'Random'" class="type-data type-Random">
+                                        {{ getInfo(field.path) }}
+                                    </div>
+                                    <div v-if="field.type == 'SteamRating'" class="type-data type-SteamRating">
+                                        {{ getInfo(field.path) }}
+                                    </div>
+                                    <div v-if="field.type == 'String'" class="type-data type-String">
+                                        {{ getInfo(field.path) }}
+                                    </div>
+                                    <div v-if="field.type == 'Array'" class="type-data type-Array">
+                                        <div class="array-items" :class="{'expanded': field.expanded}">
+                                            <div class="array-item" v-for="(a, index) in getInfo(field.path)" :key="'array' + index">
+                                                {{ a }}
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="expand-button" @click="field.expanded = !field.expanded" v-if="!field.expanded">
-                                        ...
-                                    </div>
-                                    <div class="expand-button" @click="field.expanded = !field.expanded" v-if="field.expanded">
-                                        ...
+                                        <div class="expand-button" @click="field.expanded = !field.expanded" v-if="!field.expanded">
+                                            ...
+                                        </div>
+                                        <div class="expand-button" @click="field.expanded = !field.expanded" v-if="field.expanded">
+                                            ...
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -217,72 +219,6 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
-    .fields {
-        display: flex;
-        flex-wrap: wrap;
-        flex-direction: row;
-    }
-    .field-details {
-        margin-right: 20px;
-        display: inline-flex;
-        width: auto;
-        flex-direction: column;
-        align-items: flex-start;
-        .field-type {
-            margin-top: 15px;
-            margin-bottom: 5px;
-            margin-right: 10px;
-            text-transform: uppercase;
-        }
-        .type-data {
-            display: flex;
-            align-items: center;
-            &.type-Date {
-                display: inline-block;
-                background: #222;
-                padding: 10px;
-            }
-            &.type-Score {
-                display: inline-block;
-                background: #222;
-                padding: 10px;
-            }
-            &.type-Array {
-                display: flex;
-                .array-items {
-                    display: flex;
-                    flex-wrap: wrap;
-                    max-height: 35px;
-                    &.expanded {
-                        max-height: none;
-                    }
-                    overflow: hidden;
-                    align-items: center;
-                    .array-item {
-                        text-transform: uppercase;
-                        display: block;
-                        background: #222;
-                        border: 1px solid rgba(255,255,255, 0.1);
-                        font-size: 14px;
-                        border-radius: 5px;
-                        padding: 4px 8px;
-                        margin: 4px;
-                    }
-                }
-                .expand-button {
-                    cursor: pointer;
-                    font-size: 10px;
-                    border: 1px solid grey;
-                    padding: 3px;
-                }
-            }
-        }
-    }
-    .game-title {
-        display: block;
-        font-size: 32px;
-        margin-bottom: 10px;
-    }
     .modal-background {
         position: absolute;
         top: 0;
@@ -309,6 +245,85 @@ export default {
     .game-info {
         color: white;
         padding: 20px;
+    }
+    .game-title {
+        display: block;
+        font-size: 32px;
+        margin-bottom: 10px;
+    }
+    .game-details {
+        display: flex;
+        .game-description {
+            max-width: 600px;
+            line-height: 1.5;
+            font-size: 17px;
+            background: #0e171f;
+            font-weight: 100;
+            color: white;
+            padding: 60px;
+        }
+        .fields {
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+            .field-details {
+                margin-right: 20px;
+                display: inline-flex;
+                width: auto;
+                flex-direction: column;
+                align-items: flex-start;
+                .field-type {
+                    margin-top: 15px;
+                    margin-bottom: 5px;
+                    margin-right: 10px;
+                    text-transform: uppercase;
+                }
+                .type-data {
+                    display: flex;
+                    align-items: center;
+                    &.type-Date {
+                        display: inline-block;
+                        background: #222;
+                        padding: 10px;
+                    }
+                    &.type-Score {
+                        display: inline-block;
+                        background: #222;
+                        padding: 10px;
+                    }
+                    &.type-Array {
+                        display: flex;
+                        .array-items {
+                            display: flex;
+                            flex-wrap: wrap;
+                            max-height: 35px;
+                            &.expanded {
+                                max-height: none;
+                            }
+                            overflow: hidden;
+                            align-items: center;
+                            .array-item {
+                                text-transform: uppercase;
+                                display: block;
+                                background: #222;
+                                border: 1px solid rgba(255,255,255, 0.1);
+                                font-size: 14px;
+                                border-radius: 5px;
+                                padding: 4px 8px;
+                                margin: 4px;
+                            }
+                        }
+                        .expand-button {
+                            cursor: pointer;
+                            font-size: 10px;
+                            border: 1px solid grey;
+                            padding: 3px;
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 </style>

@@ -1,6 +1,9 @@
 <template>
     <div class="slideshow">
-        <div class="main-image" :style="{backgroundImage: `url('${images[currentSlide].url}')`}"></div>
+        <div class="main-image">
+            <div class="background-image" :style="{backgroundImage: `url('${images[currentSlide].url}')`}"></div>
+            <div class="contained-image" :style="{backgroundImage: `url('${images[currentSlide].url}')`}"></div>
+        </div>
         <div class="slides">
             <div @click="currentSlide = index" v-for="(image, index) in images" :key="'slide' + index" :style="{backgroundImage: `url('${image.url}')`}"></div>
         </div>
@@ -40,10 +43,28 @@ export default {
         width: 100%;
         padding-top: #{'min((9/16 * 100%), 60vh)'}; 
         max-height: 60vh;
-        background-color: #333;
-        background-size: contain;
-        background-position: center;
-        background-repeat: no-repeat;
+        position: relative;
+        .background-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-size: cover;
+            background-position: center;
+            opacity: 0.3;
+            filter: blur(10px);
+        }
+        .contained-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
     }
     .slides {
         display: flex;

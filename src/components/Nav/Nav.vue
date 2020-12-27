@@ -76,7 +76,7 @@
             <div class="filters-content">
                 <input v-model="savedFilters[editingFilter].name" placeholder="Untitled Filter">
                 <button @click="deleteFilter">Delete</button>
-                <FiltersModel v-model="filtersModel" :fields="fields" v-on:filters-changed="filtersUpdated" :operations="operations"></FiltersModel>
+                <FiltersModel v-model="filtersModel" :fields="fields" v-on:filters-changed="filterModalUpdated" :operations="operations"></FiltersModel>
             </div>
         </div>
     </div>
@@ -131,6 +131,7 @@ export default {
         }
     },
     mounted() {
+        console.log('mounted')
         // Load saved filters
         const savedFiltersJSON = localStorage.getItem('savedFilters')
         this.savedFilters = savedFiltersJSON ? JSON.parse(savedFiltersJSON) : {}
@@ -146,13 +147,16 @@ export default {
         })
     },
     methods: {
+        filterModalUpdated() {
+            this.savedFilters[this.editingFilter].filter = JSON.stringify(this.filtersModel)
+            this.filtersUpdated()
+        },
         filterIsActive(name) {
             return _.get(this.filtersActive, `${name}.active`, '')
         },
         filtersUpdated() {
-            this.saveFilter()
-            this.savedFilters[this.editingFilter].filter = JSON.stringify(this.filtersModel)
-            this.updateFilters()
+            this.storeFilters()
+            this.emitFilters()
         },
         shuffleGames() {
             this.$emit('shuffleGames')
@@ -160,7 +164,8 @@ export default {
         toggleSortDirection() {
 
         },
-        saveFilter() {
+        storeFilters() {
+            // Store the filters in localstorage
             localStorage.setItem('savedFilters', JSON.stringify(this.savedFilters));
         },
         switchFilter(name) {
@@ -171,8 +176,9 @@ export default {
             delete this.savedFilters[this.editingFilter]
             this.closeFiltersModal()
         },
-        updateFilters() {
+        emitFilters() {
             let filters = [true];
+            // TODO check if this is right
             _.each(this.filtersActive, (filter, name) => {
                 if (filter.active === 'true') {
                     console.log('name', name)
@@ -191,6 +197,7 @@ export default {
             let combinedFilters = {
                 'and': filters
             }
+            console.log('combined', combinedFilters)
             this.$emit('filtersUpdated', combinedFilters)
         },
         cleanFilters(filters) {
@@ -206,6 +213,7 @@ export default {
             return filters
         },
         newFilter() {
+            console.log('newFilter')
             this.editingFilter = uuidv4()
             this.filtersModel = {
                 "in" : [
@@ -221,7 +229,7 @@ export default {
             this.showFiltersModal()
         },
         editFilter(filter, name) {
-            this.editingFilter = name
+            this.editingFilter = name // ONE This sets the editing filter
             this.filterModel = filter
             this.showFiltersModal()
         },
@@ -254,7 +262,7 @@ export default {
             }
             this.rerenderHack = Date.now()
 
-            this.updateFilters()
+            this.emitFilters()
         },
 
         toggleFiltersDropdown() {
@@ -335,6 +343,7 @@ export default {
             margin-right: auto;
             width: 220px;
             margin-bottom: -10px;
+            display: none;
         }
     }
     .nav-button {
