@@ -7,6 +7,9 @@ JS app to filter, sort and browse your game library.
   * Links to Steam / GG.deals?
   * Infinite Scrolling
   * Keyboard/Controller Navigation
+  * Fix multiple steam users (exporter)
+  * Display current filters as tag list
+  * 
 
 * Google Drive
   * API Setup
@@ -19,7 +22,8 @@ JS app to filter, sort and browse your game library.
     * Sync Button?
 
 * Tags
-  * Better UI
+  * Select UI with option list
+  * Edit on detail view
 
 * Filters
   * Filters in Filters
