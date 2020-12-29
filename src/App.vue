@@ -50,23 +50,6 @@ import 'vue-select/src/scss/vue-select.scss'
 import fields from './schema/fields.json'
 import operations from './schema/operations.json'
 
-/**
- * names?
- * gamma vault
- * harvestor 
- */
-
-
-// TODO
-// Improve style on filters (size etc) sidebar?
-// change usefilters to show filters?
-
-// Date filters/slider
-// Installed boolean
-// not missing?
-
-
-
 export default {
     components: {
         Nav,
@@ -179,113 +162,25 @@ export default {
         })
     },
     methods: {
-        fileChanged(content) {
-            const SCOPES = ['https://www.googleapis.com/auth/drive.metadata.readonly'];
-            const {client_secret, client_id, redirect_uris} = JSON.parse(content).installed;
-            const oAuth2Client = new google.auth.OAuth2(client_id, client_secret, redirect_uris[0]);
-
-            // getAccessToken
-            const authUrl = oAuth2Client.generateAuthUrl({
-                access_type: 'offline',
-                scope: SCOPES,
-            });
-            console.log('Authorize this app by visiting this url:', authUrl);
-
-            // Once token returned
-            // oAuth2Client.getToken(code, (err, token) => {
-            // if (err) return console.error('Error retrieving access token', err);
-            // oAuth2Client.setCredentials(token);
-            // // Store the token to disk for later program executions
-            // fs.writeFile(TOKEN_PATH, JSON.stringify(token), (err) => {
-            //     if (err) return console.error(err);
-            //     console.log('Token stored to', TOKEN_PATH);
-            // });
-            // callback(oAuth2Client);
-            // });
-
-
-
-            // google drive request
-            // const drive = google.drive({version: 'v3', auth});
-            // drive.files.list({
-            //     pageSize: 10,
-            //     fields: 'nextPageToken, files(id, name)',
-            // }, (err, res) => {
-            //     if (err) return console.log('The API returned an error: ' + err);
-            //     const files = res.data.files;
-            //     if (files.length) {
-            //     console.log('Files:');
-            //     files.map((file) => {
-            //         console.log(`${file.name} (${file.id})`);
-            //     });
-            //     } else {
-            //     console.log('No files found.');
-            //     }
-            // });
-
-            // Check if we have previously stored a token.
-            // fs.readFile(TOKEN_PATH, (err, token) => {
-            //     if (err) return getAccessToken(oAuth2Client, callback);
-            //     oAuth2Client.setCredentials(JSON.parse(token));
-            //     listFiles(oAuth2Client);
-            // });
-        },
-        // initGoogleDrive() {
-
-        //     // TODO follow node guide instead
-        //     // https://developers.google.com/drive/api/v3/quickstart/nodejs
-
-        //     function handleClientLoad() {
-        //         gapi.load('client:auth2', initClient);
-        //     }
-
-        //     function initClient() {
-        //         gapi.client.init({
-        //         apiKey: 'AIzaSyBzIpC7HEkxEZRjDyPUqkk4o2So-qumTr0',
-        //         clientId: '966928639335-fauispungrug04paephgcvcb6ecg560k.apps.googleusercontent.com',
-        //         discoveryDocs: ["https://www.googleapis.com/discovery/v1/apis/drive/v3/rest"],
-        //         scope: 'https://www.googleapis.com/auth/drive.appdata'
-        //         }).then(function () {
-        //         // Listen for sign-in state changes.
-        //         gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
-
-        //         // Handle the initial sign-in state.
-        //         updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get())
-
-        //         }, function(error) {
-        //         console.log(error)
-        //         });
-        //     }
-
-        //     function updateSigninStatus(isSignedIn) {
-        //         if (isSignedIn()) {
-        //             listFiles()
-        //         } else {
-        //         gapi.auth2.getAuthInstance().signIn();
-        //         // gapi.auth2.getAuthInstance().signOut();
-        //         }
-        //     }
-
-        //     function listFiles() {
-        //         gapi.client.drive.files.list({
-        //         'pageSize': 10,
-        //         'fields': "nextPageToken, files(id, name)"
-        //         }).then(function(response) {
-        //         var files = response.result.files;
-        //         });
-        //     }
-        // },
+        // @vuese
+        // TODO set tag for selected items
         setTag(tagName) {
             console.log(tagName)
         },
+        // @vuese
+        // check if game is selected
         isSelected(game) {
             return _.get(this.selectedGames, _.get(game, 'meta.gogId'), false)
         },
+        // @vuese
+        // toggle selected for game
         toggleSelect(game) {
             const gogId = _.get(game, 'meta.gogId')
             _.set(this.selectedGames, gogId, !(_.get(this.selectedGames, gogId, false)))
             this.rerenderHack = Date.now()
         },
+        // @vuese
+        // Run the filter against the gamelist
         filtersUpdated(filter) {
             this.currentFilter = filter
             const cleanedFilters = JSON.parse(JSON.stringify(this.currentFilter))
@@ -341,6 +236,8 @@ export default {
                 this.$Lazyload.lazyLoadHandler()
             }, 100)
         },
+        // @vuese
+        // REMOVE No longer done on this component
         cleanFilters(filters) {
             // Remove the "rule" property needed for vue
             for (const key in filters) {
@@ -352,6 +249,8 @@ export default {
                 }
             }
         },
+        // @vuese
+        // Replace tokens on filter (get details from game)
         replaceFilters(game, filters) {
             for (const key in filters) {
                 if (['or', 'and', '!'].includes(key)) {
@@ -363,27 +262,39 @@ export default {
                 }
             }
         },
+        // @vuese
+        // Set new random number on each game
         shuffleGames() {
             _.forEach(this.games, (game) => {
                 game.random = Math.random()
             })
             this.filtersUpdated(this.currentFilter)
         },
+        // @vuese
+        // Set this displayedGame
         gameClick(game) {
             this.displayedGame = game
         },
+        // @vuese
+        // Update sort
         sortUpdated(sort) {
             this.sort = sort
             this.filtersUpdated(this.currentFilter)
         },
+        // @vuese
+        // Update sort direction
         sortDirectionUpdated(direction) {
             this.sortDirection = direction
             this.filtersUpdated(this.currentFilter)
         },
+        // @vuese
+        // DUPLICATE Update sort
         sortUpdated(sort) {
             this.sort = sort
             this.filtersUpdated(this.currentFilter)
         },
+        // @vuese
+        // Update scale
         scaleUpdated(scale) {
             this.scale = scale
         }
