@@ -20,13 +20,11 @@
 </template>
 <script>
 import _ from 'lodash'
-import Slideshow from './Slideshow.vue'
 import Cover from './Cover.vue'
 export default {
     name: 'Game',
     components: {
-        Cover,
-        Slideshow
+        Cover
     },
     props: {
         game: {
