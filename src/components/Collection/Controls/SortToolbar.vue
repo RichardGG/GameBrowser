@@ -1,22 +1,17 @@
 <template>
     <div>
-        <Controls></Controls>
-        <GameList :games="games"></GameList>
+        SortToolbar
     </div>
 </template>
 <script>
-import GameList from'./GameList/GameList.vue'
-import Controls from'./Controls/Controls.vue'
 export default {
-    name: 'Collection',
+    name: 'SortToolbar',
     props: {
         games: {
-
+            type: Array
         },
     },
     components: {
-        GameList,
-        Controls
     },
     data() {
         return {
