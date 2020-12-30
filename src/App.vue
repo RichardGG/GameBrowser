@@ -10,7 +10,6 @@
             @setTag="setTag"
             @shuffleGames="shuffleGames"
         ></Nav>
-        <input type="file" @change="fileChanged">
         <div class="games-area">
             {{ filteredGames.length }} Games
             <div class="games">
