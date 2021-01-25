@@ -1,6 +1,6 @@
 t<template>
     <div class="filter-tag">
-        FilterTag
+        FilterTag <span @click="deleteMe">X</span>
     </div>
 </template>
 <script>
@@ -20,7 +20,9 @@ export default {
       
     },
     methods: {
-       
+       deleteMe() {
+           this.$emit('delete-me')
+       }
     }
 }
 </script>

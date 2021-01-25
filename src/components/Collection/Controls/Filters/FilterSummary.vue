@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="filter-tags">
-            <FilterTag v-for="(tag, index) in tags" :key="index"></FilterTag>
+            <FilterTag v-for="(tag, index) in tags" :key="index" v-on:delete-me="deleteChild(index)"></FilterTag>
             <button @click="addFilter">+</button>
         </div>
         <button>OR</button>
@@ -34,6 +34,9 @@ export default {
        addFilter() {
            this.tags.push('FilterTag')
        },
+       deleteChild(index) {
+           this.tags.splice(index, 1)
+       }
     },
     watch: {
         value() {
